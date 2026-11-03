@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Liquid Glass — demo</title>
+<link rel="stylesheet" href="../assets/liquid-glass.css">
+<style>
+  * { margin: 0; box-sizing: border-box; }
+  body {
+    min-height: 100vh;
+    font-family: Georgia, 'Times New Roman', serif;
+    color: #fff;
+    overflow: hidden;
+    background:
+      radial-gradient(600px 400px at 18% 22%, rgba(255, 166, 88, .55), transparent 65%),
+      radial-gradient(700px 500px at 82% 30%, rgba(64, 130, 255, .45), transparent 65%),
+      radial-gradient(500px 380px at 55% 85%, rgba(64, 220, 170, .35), transparent 65%),
+      linear-gradient(160deg, #131c2e, #0a0f1a 70%);
+  }
+  /* a crisp grid drifting behind the glass: bend is easiest to see on straight lines */
+  .grid {
+    position: fixed; inset: -60px;
+    background:
+      repeating-linear-gradient(0deg, rgba(255,255,255,.14) 0 1px, transparent 1px 44px),
+      repeating-linear-gradient(90deg, rgba(255,255,255,.14) 0 1px, transparent 1px 44px);
+    animation: drift 26s linear infinite;
+  }
+  @keyframes drift { to { transform: translate(44px, 44px); } }
+  h1 {
+    position: fixed; top: 9vh; width: 100%; text-align: center;
+    font-size: clamp(26px, 5vw, 44px); font-weight: 600; letter-spacing: .04em;
+    text-shadow: 0 4px 24px rgba(0,0,0,.5);
+  }
+  h1 small { display: block; font-size: 14px; letter-spacing: .35em; opacity: .75; margin-top: 10px; font-family: system-ui, sans-serif; }
+  .card {
+    position: fixed; left: 50%; top: 34vh; transform: translateX(-50%);
+    width: min(430px, 88vw); padding: 22px 26px; border-radius: 28px;
+    font-family: system-ui, sans-serif; line-height: 1.65; font-size: 15px;
+  }
+  .card b { font-size: 17px; }
+  .dock {
+    position: fixed; left: 50%; bottom: 8vh; transform: translateX(-50%);
+    display: flex; gap: 6px; padding: 8px 10px; border-radius: 999px;
+    font-family: system-ui, sans-serif;
+  }
+  .dock button {
+    border: 0; background: transparent; color: #e8eeff; cursor: pointer;
+    font-size: 13px; padding: 10px 16px; border-radius: 999px;
+    transition: background .25s, transform .15s;
+  }
+  .dock button:active { transform: scale(.93); }
+  .dock button.on { background: rgba(255,255,255,.16); }
+  .hint {
+    position: fixed; bottom: 3vh; width: 100%; text-align: center;
+    font-family: system-ui, sans-serif; font-size: 12px; letter-spacing: .2em; opacity: .6;
+  }
+</style>
+</head>
+<body>
+  <div class="grid"></div>
+  <h1>Liquid Glass<small>REAL REFRACTION · RGB DISPERSION · LIVE SPECULAR</small></h1>
+
+  <div class="card lg">
+    <b>Look at the edges, not the middle.</b><br>
+    The centre stays neutral and readable — real glass bends light only near
+    its rim. Watch the grid lines curve as they pass under this card, and the
+    colour fringing along the border. Move your pointer (or tilt your phone):
+    the highlight is alive.
+  </div>
+
+  <div class="dock lg lg-capsule">
+    <button class="on">Lamp</button>
+    <button>Fire</button>
+    <button>Rain</button>
+    <button>Sound</button>
+    <button>Orbit</button>
+  </div>
+
+  <div class="hint">MOVE THE POINTER · THE LIGHT FOLLOWS</div>
+
+  <script src="../assets/liquid-glass.js"></script>
+  <script>
+    document.querySelectorAll('.dock button').forEach(function (b) {
+      b.addEventListener('click', function () {
+        document.querySelectorAll('.dock button').forEach(function (x) { x.classList.remove('on'); });
+        b.classList.add('on');
+      });
+    });
+  </script>
+</body>
+</html>
