@@ -20,7 +20,7 @@ The full effect running a real UI — a Three.js night-cabin scene whose dock,
 toasts and slider are all liquid glass, including a flash of lightning that
 the glass answers:
 
-**→ [night-cabin-liquid-glass](https://github.com/cxc1344/night-cabin-liquid-glass)**
+**→ Live demo: [cxc1344.github.io/night-cabin-liquid-glass](https://cxc1344.github.io/night-cabin-liquid-glass/)** · source: [night-cabin-liquid-glass](https://github.com/cxc1344/night-cabin-liquid-glass)
 
 A minimal standalone demo lives in [`examples/demo.html`](examples/demo.html):
 open it, move the pointer, watch the grid bend under the edges of the card.
